@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter data</title>       
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>   
+<body>  
+    <nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="#">DigitalSEE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-left"> 
+                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+              <li class="nav-item">
+                    <a class="nav-link" href="/view-uploads"><i class="fas fa-tachometer-alt"></i>View</a></li>       
+          </ul>
+        </div>
+      </nav>
+      <br>
+    
+    <br>    
+    <div class="container">
+        <form method="POST" id="completeForm" action="/submit">
+            <div class="form-group">
+                <h3 class="heading">General information</h3>
+                <div class="controls">
+                    <label for="filename">Filename:</label>
+                    <input type="text" id="filename" name="filename" class="form-control" required><br>
+
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" class="form-control" required>
+
+                    <label for="name_source">Name (according to source):</label>
+                    <input type="text" id="name_source" name="name_source" class="form-control" required>
+
+                    <label for="name_contemporary">Name (contemporary):</label>
+                    <input type="text" id="name_contemporary" name="name_contemporary" class="form-control" required>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control"></textarea>
+
+                    <label for="provenance_origin">Provenance Origin:</label>
+                    <input type="text" id="provenance_origin" name="provenance_origin" class="form-control">
+
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" id="latitude" name="latitude" class="form-control" required pattern="^\d{2}\.\d+$" placeholder="e.g., 32.12345">
+
+                    <label for="longitude">Longitude:</label>
+                    <input type="text" id="longitude" name="longitude" class="form-control" required pattern="^(-)?\d{2}\.\d+$" placeholder="e.g., -12.34567">
+
+                    <label for="geonamesLink">Geonames Link:</label>
+                    <input type="text" id="geonamesLink" name="geonamesLink" class="form-control">
+
+                    <label for="pleiadesLink">Pleiades Link:</label>
+                    <input type="text" id="pleiadesLink" name="pleiadesLink" class="form-control">
+
+                    <label for="date">Date:</label>
+                    <input type="text" id="date" name="date" class="form-control" required pattern="^(?:(\d{1,2}\.\d{1,2}\.\d{4})|([IVXLCDM]+)|([IVXLCDM]+\s*-\s*[IVXLCDM]+)|(\d{4}))$" placeholder="e.g., 01.01.2023, VII, VII - VIII, or 2023">
+
+                    <div class="form-group">
+                        <label for="datingCriteria">Dating Criteria:</label>
+                        <select id="datingCriteria" name="datingCriteria" class="form-control">
+                            <option value="">--Please select from the list--</option>
+                            <option value="lettering">Paleography of the document</option>
+                            <option value="nomenclature">Personal names and naming conventions characteristic of a specific period</option>
+                            <option value="prosopography">Mention of historically attested individuals whose lives we know</option>
+                            <option value="reign">Mention in the document of officials with known periods of rule, mandates, etc.</option>
+                            <option value="internal-date">Dating explicitly stated in the document itself</option>
+                            <option value="titulature">Mention in the document of titles of emperors and others with known dates of issue</option>
+                            <option value="context">Archaeological context of discovery, as well as other possible contexts, such as architectural</option>
+                        </select>
+                    </div>
+                    
+                    <label for="localizationSource">Localization Source:</label>
+                    <input type="text" id="localizationSource" name="localizationSource" class="form-control">
+
+                    <div class="form-group">
+                        <label for="localizationCertainity">Localization Certainity:</label>
+                        <select id="localizationCertainity" name="localizationCertainity" class="form-control">
+                            <option value="">--Please select from the list--</option>
+                            <option value="high">Certain</option>
+                            <option value="medium">Relative</option>
+                            <option value="low">Uncertain</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age (according to source):</label>
+                        <select id="age" name="age" class="form-control">
+                            <option value="">--Please select from the list--</option>
+                            <option value="prehistory">Prehistory</option>
+                            <option value="iron_age">Iron Age</option>
+                            <option value="roman_age">Roman Age</option>
+                            <option value="late_antiquity">Late Antiquity</option>
+                            <option value="middle_ages">Middle Ages</option>
+                            <option value="ottoman_period">Ottoman Period</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="heading">Observed In</h3>
+                <div class="controls"><br>
+                    <label for="provenanceObservedIn">Provenance Observed In:</label>
+                    <input type="text" id="provenanceObservedIn" name="provenanceObservedIn" class="form-control">
+
+                    <label for="latitudeObserved">Latitude Observed:</label>
+                    <input type="text" id="latitudeObserved" name="latitudeObserved" class="form-control" placeholder="e.g., 32.12345">
+
+                    <label for="longitudeObserved">Longitude Observed:</label>
+                    <input type="text" id="longitudeObserved" name="longitudeObserved" class="form-control" placeholder="e.g., -12.34567">
+
+                    <label for="geonamesLinkObserved">Geonames Link Observed:</label>
+                    <input type="text" id="geonamesLinkObserved" name="geonamesLinkObserved" class="form-control">
+
+                    <label for="pleiadesLinkObserved">Pleiades Link Observed:</label>
+                    <input type="text" id="pleiadesLinkObserved" name="pleiadesLinkObserved" class="form-control">
+
+                    <label for="dateObserved">Date Observed:</label>
+                    <input type="text" id="dateObserved" name="dateObserved" class="form-control">
+                    
+                    <div class="form-group">
+                        <label for="datingCriteriaObserved">Dating Criteria Observed:</label>
+                        <select id="datingCriteriaObserved" name="datingCriteriaObserved" class="form-control">
+                            <option value="">--Please select from the list--</option>
+                            <option value="lettering">Paleography of the document</option>
+                            <option value="nomenclature">Personal names and naming conventions characteristic of a specific period</option>
+                            <option value="prosopography">Mention of historically attested individuals whose lives we know</option>
+                            <option value="reign">Mention in the document of officials with known periods of rule, mandates, etc.</option>
+                            <option value="internal-date">Dating explicitly stated in the document itself</option>
+                            <option value="titulature">Mention in the document of titles of emperors and others with known dates of issue</option>
+                            <option value="context">Archaeological context of discovery, as well as other possible contexts, such as architectural</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="heading">Other</h3>
+                <div class="controls"><br>
+                    <label for="provenanceOtherLocations">Provenance Other Locations:</label>
+                    <input type="text" id="provenanceOtherLocations" name="provenanceOtherLocations" class="form-control">
+
+                    <label for="latitudeOther">Latitude Other:</label>
+                    <input type="text" id="latitudeOther" name="latitudeOther" class="form-control" placeholder="e.g., 32.12345">
+
+                    <label for="longitudeOther">Longitude Other:</label>
+                    <input type="text" id="longitudeOther" name="longitudeOther" class="form-control" placeholder="e.g., -12.34567">
+
+                    <label for="geonamesLinkOtherLocations">Geonames Link Other Locations:</label>
+                    <input type="text" id="geonamesLinkOtherLocations" name="geonamesLinkOtherLocations" class="form-control">
+
+                    <label for="dateOtherLocations">Date Other Locations:</label>
+                    <input type="text" id="dateOtherLocations" name="dateOtherLocations" class="form-control">
+
+                    <div class="form-group">
+                        <label for="datingCriteriaOtherLocations">Dating Criteria Other Locations:</label>
+                        <select id="datingCriteriaOtherLocations" name="datingCriteriaOtherLocations" class="form-control">
+                            <option value="">--Please select from the list--</option>
+                            <option value="lettering">Paleography of the document</option>
+                            <option value="nomenclature">Personal names and naming conventions characteristic of a specific period</option>
+                            <option value="prosopography">Mention of historically attested individuals whose lives we know</option>
+                            <option value="reign">Mention in the document of officials with known periods of rule, mandates, etc.</option>
+                            <option value="internal-date">Dating explicitly stated in the document itself</option>
+                            <option value="titulature">Mention in the document of titles of emperors and others with known dates of issue</option>
+                            <option value="context">Archaeological context of discovery, as well as other possible contexts, such as architectural</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="heading">Current</h3>
+                <div class="controls"><br>
+                    <label for="currentLocation">Current Location:</label>
+                    <input type="text" id="currentLocation" name="currentLocation" class="form-control">
+
+                    <label for="latitudeCurrent">Latitude Current:</label>
+                    <input type="text" id="latitudeCurrent" name="latitudeCurrent" class="form-control" placeholder="e.g., 32.12345">
+
+                    <label for="longitudeCurrent">Longitude Current:</label>
+                    <input type="text" id="longitudeCurrent" name="longitudeCurrent" class="form-control" placeholder="e.g., -12.34567">
+
+                    <label for="geonamesLinkCurrent">Geonames Link Current:</label>
+                    <input type="text" id="geonamesLinkCurrent" name="geonamesLinkCurrent" class="form-control">
+
+                    <label for="pleiadesLinkCurrent">Pleiades Link Current:</label>
+                    <input type="text" id="pleiadesLinkCurrent" name="pleiadesLinkCurrent" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="heading">Text Information</h3>
+                <div class="controls"><br>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <div class="form-check" mb-2>
+                            <input type="checkbox" id="communication" name="categories[]" value="communication" class="custom-checkbox">
+                            <label class="form-check-label" for="communication">Communication</label>
+                            <div id="communication-subcategories" style="display: none;">
+                                <input type="checkbox" name="communication_subcategories[]" value="inn" class="custom-checkbox">
+                                <label class="form-check-label" for="inn">Inn</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="bridge" class="custom-checkbox">
+                                <label class="form-check-label" for="bridge">Bridge</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="viaduct" class="custom-checkbox">
+                                <label class="form-check-label" for="viaduct">Viaduct</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="imaret" class="custom-checkbox">
+                                <label class="form-check-label" for="imaret">Imaret</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="ford" class="custom-checkbox">
+                                <label class="form-check-label" for="ford">Ford</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="quarantine" class="custom-checkbox">
+                                <label class="form-check-label" for="quarantine">Quarantine</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="postStation" class="custom-checkbox">
+                                <label class="form-check-label" for="postStation">Post Station</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="roadsideFountain" class="custom-checkbox">
+                                <label class="form-check-label" for="roadsideFountain">Roadside fountain</label>
+                                <input type="checkbox" name="communication_subcategories[]" value="oldRoadRemains" class="custom-checkbox">
+                                <label class="form-check-label" for="oldRoadRemains">Old Road Remains</label>
+                            </div>                                                   
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="religious" name="categories[]" value="religious" class="custom-checkbox">
+                            <label class="form-check-label" for="religious">Religious sites & objects</label>
+                            <div id="religious-subcategories" style="display: none;">
+                                <input type="checkbox" name="religious_subcategories[]" value="church" class="custom-checkbox">
+                                <label class="form-check-label" for="church">Church</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="paganTemple" class="custom-checkbox">
+                                <label class="form-check-label" for="paganTemple">Pagan Temple</label>                                                    
+                                <input type="checkbox" name="religious_subcategories[]" value="chapel" class="custom-checkbox">
+                                <label class="form-check-label" for="chapel">Chapel</label>                                                    
+                                <input type="checkbox" name="religious_subcategories[]" value="mosque" class="custom-checkbox">
+                                <label class="form-check-label" for="mosque">Mosque</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="tekke" class="custom-checkbox">
+                                <label class="form-check-label" for="tekke">Tekke</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="madrasah" class="custom-checkbox">
+                                <label class="form-check-label" for="madrasah">Madrasah</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="turbe" class="custom-checkbox">
+                                <label class="form-check-label" for="turbe">Türbe</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="ancientMausoleum" class="custom-checkbox">
+                                <label class="form-check-label" for="ancientMausoleum">Ancient Mausoleum</label><br>                                                     
+                                <input type="checkbox" name="religious_subcategories[]" value="monastery" class="custom-checkbox">
+                                <label class="form-check-label" for="monastery">Monastery</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="caveMonastery" class="custom-checkbox">
+                                <label class="form-check-label" for="caveMonastery">Cave Monastery</label>
+                                <input type="checkbox" name="religious_subcategories[]" value="votiveTablet" class="custom-checkbox">
+                                <label class="form-check-label" for="votiveTablet">Votive Tablet</label>                                                    
+                                <input type="checkbox" name="religious_subcategories[]" value="votiveStone" class="custom-checkbox">
+                                <label class="form-check-label" for="votiveStone">Votive Stone</label>           
+                                <input type="checkbox" name="religious_subcategories[]" value="megaliths" class="custom-checkbox">
+                                <label class="form-check-label" for="megaliths">Megaliths</label>                                            
+                                <input type="checkbox" name="religious_subcategories[]" value="synagogue" class="custom-checkbox">
+                                <label class="form-check-label" for="synagogue">Synagogue</label>                                                                 
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="inscriptions" name="categories[]" value="inscriptions" class="custom-checkbox">
+                            <label class="form-check-label" for="inscriptions">Inscriptions</label>
+                            <div id="inscriptions-subcategories" style="display: none;">
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="funerary_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="funerary_inscription">Funerary Inscription</label>
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="boundary_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="boundary_inscription">Boundary Inscription</label>
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="milestone" class="custom-checkbox">
+                                <label class="form-check-label" for="milestone">Milestone</label>                                                   
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="legal_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="legal_inscription">Legal Inscription</label><br> 
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="votive_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="votive_inscription">Votive Inscription</label>
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="list" class="custom-checkbox">
+                                <label class="form-check-label" for="list">List</label>                                                   
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="honorary_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="honorary_inscription">Honorary Inscription</label>
+                                <input type="checkbox" name="inscriptions_subcategories[]" value="dedicatory_inscription" class="custom-checkbox">
+                                <label class="form-check-label" for="dedicatory_inscription">Dedicatory Inscription</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="fortifications" name="categories[]" value="fortifications" class="custom-checkbox">
+                            <label class="form-check-label" for="fortifications">Fortifications</label>
+                            <div id="fortifications-subcategories" style="display: none;">
+                                <input type="checkbox" name="fortifications_subcategories[]" value="fortress" class="custom-checkbox">
+                                <label class="form-check-label" for="fortress">Fortress</label>
+                                <input type="checkbox" name="fortifications_subcategories[]" value="quadriburgium" class="custom-checkbox">
+                                <label class="form-check-label" for="quadriburgium">Quadriburgium</label>
+                                <input type="checkbox" name="fortifications_subcategories[]" value="palanka" class="custom-checkbox">
+                                <label class="form-check-label" for="palanka">Palanka</label>
+                                <input type="checkbox" name="fortifications_subcategories[]" value="watchtower" class="custom-checkbox">
+                                <label class="form-check-label" for="watchtower">Watchtower</label>
+                                <input type="checkbox" name="fortifications_subcategories[]" value="fort" class="custom-checkbox">
+                                <label class="form-check-label" for="fort">Fort</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="settlements" name="categories[]" value="settlements" class="custom-checkbox">
+                            <label class="form-check-label" for="settlements">Settlements</label>
+                            <div id="settlements-subcategories" style="display: none;">                                                    	
+                                <input type="checkbox" name="settlements_subcategories[]" value="settlement" class="custom-checkbox">
+                                <label class="form-check-label" for="settlement">Settlement</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="town" class="custom-checkbox">
+                                <label class="form-check-label" for="town">Town</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="village" class="custom-checkbox">
+                                <label class="form-check-label" for="village">Village</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="villa" class="custom-checkbox">
+                                <label class="form-check-label" for="villa">Villa</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="mahalla" class="custom-checkbox">
+                                <label class="form-check-label" for="mahalla">Mahalla</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="chiftlik" class="custom-checkbox">
+                                <label class="form-check-label" for="chiftlik">Chiftlik</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="tell" class="custom-checkbox">
+                                <label class="form-check-label" for="tell">Tell</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="towerhouse" class="custom-checkbox">
+                                <label class="form-check-label" for="towerhouse">Towerhouse</label>
+                                <input type="checkbox" name="settlements_subcategories[]" value="building" class="custom-checkbox">
+                                <label class="form-check-label" for="building">Building</label>                                                    	
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="linear" name="categories[]" value="linear" class="custom-checkbox">
+                            <label class="form-check-label" for="linear">Linear structures</label>
+                            <div id="linear-subcategories" style="display: none;">                                                    	
+                                <input type="checkbox" name="linear_subcategories[]" value="dike" class="custom-checkbox">
+                                <label class="form-check-label" for="dike">Dike</label>
+                                <input type="checkbox" name="linear_subcategories[]" value="moat" class="custom-checkbox">
+                                <label class="form-check-label" for="moat">Moat</label>                                                  	
+                                <input type="checkbox" name="linear_subcategories[]" value="stone_wall" class="custom-checkbox">
+                                <label class="form-check-label" for="stone_wall">Stone Wall</label>
+                                <input type="checkbox" name="linear_subcategories[]" value="gate" class="custom-checkbox">
+                                <label class="form-check-label" for="gate">Gate</label>                                                  	
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="manuscripts" name="categories[]" value="manuscripts" class="custom-checkbox">
+                            <label class="form-check-label" for="manuscripts">Manuscripts</label>
+                            <div id="manuscripts-subcategories" style="display: none;">                                                    	
+                                <input type="checkbox" name="manuscript_subcategories[]" value="decree" class="custom-checkbox">
+                                <label class="form-check-label" for="decree">Decree</label>
+                                <input type="checkbox" name="manuscript_subcategories[]" value="book" class="custom-checkbox">
+                                <label class="form-check-label" for="book">Book</label>
+                                <input type="checkbox" name="manuscript_subcategories[]" value="scroll" class="custom-checkbox">
+                                <label class="form-check-label" for="scroll">Scroll</label>
+                                <input type="checkbox" name="manuscript_subcategories[]" value="royal_charter" class="custom-checkbox">
+                                <label class="form-check-label" for="royal_charter">Royal Charter</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="water" name="categories[]" value="water" class="custom-checkbox">
+                            <label class="form-check-label" for="water">Water</label>
+                            <div id="water-subcategories" style="display: none;">
+                                <input type="checkbox" name="water_subcategories[]" value="ancientBath" class="custom-checkbox">
+                                <label class="form-check-label" for="ancientBath">Ancient Bath</label>
+                                <input type="checkbox" name="water_subcategories[]" value="hammam" class="custom-checkbox">
+                                <label class="form-check-label" for="hammam">Hammam</label>
+                                <input type="checkbox" name="water_subcategories[]" value="aqueduct" class="custom-checkbox">
+                                <label class="form-check-label" for="aqueduct">Aqueduct</label>
+                                <input type="checkbox" name="water_subcategories[]" value="waterPipeline" class="custom-checkbox">
+                                <label class="form-check-label" for="waterPipeline">Water Pipeline</label>
+                                <input type="checkbox" name="water_subcategories[]" value="waterReservoir" class="custom-checkbox">
+                                <label class="form-check-label" for="waterReservoir">Water Reservoir</label>
+                                <input type="checkbox" name="water_subcategories[]" value="fountain" class="custom-checkbox">
+                                <label class="form-check-label" for="fountain">Fountain</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="economy" name="categories[]" value="economy" class="custom-checkbox">
+                            <label class="form-check-label" for="economy">Economy</label>
+                            <div id="economy-subcategories" style="display: none;">
+                                <input type="checkbox" name="economy_subcategories[]" value="BazaarBedesten" class="custom-checkbox">
+                                <label class="form-check-label" for="BazaarBedesten">Bazaar/Bedesten</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="horreum" class="custom-checkbox">
+                                <label class="form-check-label" for="horreum">Horreum</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="quarry" class="custom-checkbox">
+                                <label class="form-check-label" for="quarry">Quarry</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="mine" class="custom-checkbox">
+                                <label class="form-check-label" for="mine">Mine</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="slag_pile" class="custom-checkbox">
+                                <label class="form-check-label" for="slag_pile">Slag Pile</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="bloomery" class="custom-checkbox">
+                                <label class="form-check-label" for="bloomery">Bloomery</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="water_powered_trip_hammer" class="custom-checkbox">
+                                <label class="form-check-label" for="water_powered_trip_hammer">Water-Powered Trip Hammer</label>
+                                <input type="checkbox" name="economy_subcategories[]" value="customs" class="custom-checkbox">
+                                <label class="form-check-label" for="customs">Customs</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="other" name="categories[]" value="other" class="custom-checkbox">
+                            <label class="form-check-label" for="other">Other</label>
+                            <div id="other-subcategories" style="display: none;">
+                                <input type="checkbox" name="other_subcategories[]" value="mound_of_indeterminate_function" class="custom-checkbox">
+                                <label class="form-check-label" for="mound_of_indeterminate_function">Mound of Indeterminate Function</label>
+                                <input type="checkbox" name="other_subcategories[]" value="rock_relief" class="custom-checkbox">
+                                <label class="form-check-label" for="rock_relief">Rock Relief</label>
+                                <input type="checkbox" name="other_subcategories[]" value="clock_tower" class="custom-checkbox">
+                                <label class="form-check-label" for="clock_tower">Clock Tower</label>
+                                <input type="checkbox" name="other_subcategories[]" value="architectural_detail" class="custom-checkbox">
+                                <label class="form-check-label" for="architectural_detail">Architectural Detail</label>
+                                <input type="checkbox" name="other_subcategories[]" value="sculpture" class="custom-checkbox">
+                                <label class="form-check-label" for="sculpture">Sculpture</label><br>
+                                <input type="checkbox" name="other_subcategories[]" value="stele" class="custom-checkbox">
+                                <label class="form-check-label" for="stele">Stele</label>
+                                <input type="checkbox" name="other_subcategories[]" value="spolia" class="custom-checkbox">
+                                <label class="form-check-label" for="spolia">Spolia</label>
+                                <input type="checkbox" name="other_subcategories[]" value="coins" class="custom-checkbox">
+                                <label class="form-check-label" for="coins">Coins</label>
+                                <input type="checkbox" name="other_subcategories[]" value="gem" class="custom-checkbox">
+                                <label class="form-check-label" for="gem">Gem</label>
+                                <input type="checkbox" name="other_subcategories[]" value="others" class="custom-checkbox">
+                                <label class="form-check-label" for="others">Others</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" id="burials" name="categories[]" value="burials" class="custom-checkbox">
+                            <label class="form-check-label" for="burials">Burials</label>
+                            <div id="burials-subcategories" style="display: none;">
+                                <input type="checkbox" name="burials_subcategories[]" value="sarcophagus" class="custom-checkbox">
+                                <label class="form-check-label" for="sarcophagus">Sarcophagus</label>
+                                <input type="checkbox" name="burials_subcategories[]" value="tombstone" class="custom-checkbox">
+                                <label class="form-check-label" for="tombstone">Tombstone</label>                                                    
+                                <input type="checkbox" name="burials_subcategories[]" value="tumular_necropolis" class="custom-checkbox">
+                                <label class="form-check-label" for="tumular_necropolis">Tumular Necropolis</label>
+                                <input type="checkbox" name="burials_subcategories[]" value="flat_necropolis" class="custom-checkbox">
+                                <label class="form-check-label" for="flat_necropolis">Flat Necropolis</label>
+                                <input type="checkbox" name="burials_subcategories[]" value="cemetery" class="custom-checkbox">
+                                <label class="form-check-label" for="cemetery">Cemetery</label>                                                  
+                                <input type="checkbox" name="burials_subcategories[]" value="dolmen" class="custom-checkbox">
+                                <label class="form-check-label" for="dolmen">Dolmen</label>
+                                <input type="checkbox" name="burials_subcategories[]" value="tumulus" class="custom-checkbox">
+                                <label class="form-check-label" for="tumulus">Tumulus</label>
+                            </div>
+                        </div>                                      
+                        <br>
+                        <label for="authorPublication">Author of Publications (as in Bibliography):</label>
+                        <input type="text" id="authorPublication" name="authorPublication" class="form-control">
+
+                        <label for="startDate">Start Date:</label>
+                        <input type="text" id="startDate" name="startDate" class="form-control">
+
+                        <label for="endDate">End Date:</label>
+                        <input type="text" id="endDate" name="endDate" class="form-control">
+
+                        <div class="form-group">
+                            <label for="ageContemporary">Age (contemporary):</label>
+                            <select id="ageContemporary" name="ageContemporary" class="form-control">
+                                <option value="">--Please select from the list--</option>
+                                <option value="prehistory">Prehistory</option>
+                                <option value="iron_age">Iron Age</option>
+                                <option value="roman_age">Roman Age</option>
+                                <option value="late_antiquity">Late Antiquity</option>
+                                <option value="middle_ages">Middle Ages</option>
+                                <option value="ottoman_period">Ottoman Period</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="originalLanguage">Original Language:</label>
+                            <select id="originalLanguage" name="originalLanguage" class="form-control" required>
+                                <option value="">--Please select from the list--</option>
+                                <option value="eng">English</option>
+                                <option value="ara">Arabic</option>
+                                <option value="bos">Bosnian</option>
+                                <option value="bul">Bulgarian</option>
+                                <option value="ell">Modern Greek</option>
+                                <option value="spa">Spanish</option>
+                                <option value="ita">Italian</option>
+                                <option value="lat">Latin</option>
+                                <option value="deu">German</option>
+                                <option value="ota">Ottoman Turkish</option>
+                                <option value="fas">Persian</option>
+                                <option value="pol">Polish</option>
+                                <option value="ron">Romanian</option>
+                                <option value="rus">Russian</option>
+                                <option value="srp">Serbian</option>
+                                <option value="grc">Ancient Greek</option>
+                                <option value="tur">Turkish</option>
+                                <option value="hun">Hungarian</option>
+                                <option value="fre">French</option>
+                                <option value="hrv">Croatian</option>
+                                <option value="chu">Church Slavonic</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publicationLanguage">Publication Language:</label>
+                            <select id="publicationLanguage" name="publicationLanguage" class="form-control">
+                                <option value="">--Please select from the list--</option>
+                                <option value="eng">English</option>
+                                <option value="ara">Arabic</option>
+                                <option value="bos">Bosnian</option>
+                                <option value="bul">Bulgarian</option>
+                                <option value="ell">Modern Greek</option>
+                                <option value="spa">Spanish</option>
+                                <option value="ita">Italian</option>
+                                <option value="lat">Latin</option>
+                                <option value="deu">German</option>
+                                <option value="ota">Ottoman Turkish</option>
+                                <option value="fas">Persian</option>
+                                <option value="pol">Polish</option>
+                                <option value="ron">Romanian</option>
+                                <option value="rus">Russian</option>
+                                <option value="srp">Serbian</option>
+                                <option value="grc">Ancient Greek</option>
+                                <option value="tur">Turkish</option>
+                                <option value="hun">Hungarian</option>
+                                <option value="fre">French</option>
+                                <option value="hrv">Croatian</option>
+                                <option value="chu">Church Slavonic</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sourceInformation">Source Information/Bibliography:</label>
+                            <input type="text" id="sourceInformation" name="sourceInformation" class="form-control" required>
+                        
+                            <label for="annotation">Annotations:</label>
+                            <textarea id="annotation" name="annotation" class="form-control"></textarea>
+                        
+                            <label for="keywords">Keywords:</label>
+                            <input type="text" id="keywords" name="keywords" class="form-control" required>
+                        
+                            <label for="sourceContent">Source Content:</label>
+                            <textarea id="sourceContent" name="sourceContent" class="form-control"></textarea>
+                        
+                            <label for="copyrightStoragePlace">Copyright Storage Place:</label>
+                            <input type="text" id="copyrightStoragePlace" name="copyrightStoragePlace" class="form-control">
+                        
+                            <label for="viaf">VIAF:</label>
+                            <input type="text" id="viaf" name="viaf" class="form-control">
+                        
+                            <label for="iiif">IIIF:</label>
+                            <input type="text" id="iiif" name="iiif" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+            <button type="submit" class="btn btn-success" style="float: right;">Save to XML</button>
+        </form>
+    </div><br>
+    <br>
+    <br>
+    <footer>
+        <p class="mb-0">&copy; 2024 <a href="https://github.com/Bestroi150" target="_blank" style="color: #ffffff;">DigitalSEE</a></p>
+        <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="color: #ffffff;">Creative Commons Attribution 4.0 International License</a>.</p>
+        <div class="d-flex justify-content-center mt-2">          
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/script.js"></script> 
+</body>
+</html>
