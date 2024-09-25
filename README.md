@@ -26,9 +26,7 @@ This project is a Flask-based web application that allows users to generate, upl
 
 ## Features
 - **XML File Generation**: Users can fill out forms, and the application generates XML files based on the input.
-- **File Upload**: Upload and save XML files to a directory.
 - **Search & View**: Search through uploaded XML files based on keywords and metadata.
-- **File Download**: Download generated or uploaded XML files from the server.
 - **File Management**: List and view all uploaded XML files.
 
 ## Requirements
