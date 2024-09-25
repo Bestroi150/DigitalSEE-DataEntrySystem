@@ -19,6 +19,7 @@ This project is a Flask-based web application that allows users to generate, upl
 - [Running the Application](#run-the-flask-application)
 - [Application Routes](#application-routes)
 - [Usage](#usage)
+- [Dataset](#dataset)
 - [Form Fields](#form-fields)
 - [Error Handling](#error-handling)
 - [Troubleshooting](#troubleshooting)
@@ -78,14 +79,13 @@ This project is a Flask-based web application that allows users to generate, upl
     -   Navigate to the homepage (`http://127.0.0.1:5000/`).
     -   Fill out the form with details about the historical or archaeological site.
     -   Submit the form. The XML file will be generated and stored in the `uploads/` folder.
-2.  **Upload XML Files**
-    
-    -   Go to `http://127.0.0.1:5000/upload`.
-    -   Select an XML file and click "Submit" to upload it.
-3.  **View and Search Files**
+2.  **View and Search Files**
     
     -   Go to `http://127.0.0.1:5000/view-uploads`.
-    -   Search through the uploaded XML files by entering keywords in the search box. 
+    -   Search through the uploaded XML files by entering keywords in the search box.
+  
+## Dataset
+The XML metadata generated using this system has been compiled into a dataset, which can be accessed through the following repository: [DigitalSEE](https://github.com/Bestroi150/DigitalSEE/tree/main). This dataset contains detailed records of historical and archaeological sites and is a key component of the DigitalSEE initiative. 
 
 ## Form Fields
 
@@ -110,7 +110,6 @@ The form requires input of the following metadata fields:
 ## Troubleshooting
 
 -   **File Not Saving**: Verify the `uploads` folder exists and has write permissions.
-
 
 ## License
 
