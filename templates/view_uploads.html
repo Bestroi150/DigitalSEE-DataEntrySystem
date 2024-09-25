@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data</title>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-mainbg">
+  <a class="navbar-brand navbar-logo" href="#">DigitalSEE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars text-white"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-left"> 
+          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+        <li class="nav-item">
+              <a class="nav-link" href="/"><i class="far fa-file-alt"></i>Add new</a></li>       
+    </ul>
+  </div>
+</nav>
+<br>
+    <div class="container">
+        <h1>Uploaded XML Files</h1>
+        <form method="GET" action="/view-uploads">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ search_query }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+<br>
+        <div id="tables" class="container">
+            {% for filename, site_object in xml_contents.items() %}
+                <h2>{{ filename }}</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Author</strong></td>
+                            <td>{{ site_object.author }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Name Source</strong></td>
+                            <td>{{ site_object.nameSource }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contemporary Name</strong></td>
+                            <td>{{ site_object.nameContemporary }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Description</strong></td>
+                            <td>{{ site_object.description }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provenance Origin</strong></td>
+                            <td>{{ site_object.provenanceOrigin }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latitude</strong></td>
+                            <td>{{ site_object.latitude }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Longitude</strong></td>
+                            <td>{{ site_object.longitude }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Geonames Link</strong></td>
+                            <td>{{ site_object.geonamesLink }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pleiades Link</strong></td>
+                            <td>{{ site_object.pleiadesLink }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date</strong></td>
+                            <td>{{ site_object.date }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dating Criteria</strong></td>
+                            <td>{{ site_object.datingCriteria }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Localization Source</strong></td>
+                            <td>{{ site_object.localizationSource }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Localization Certainty</strong></td>
+                            <td>{{ site_object.localizationCertainity }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Age (according to source)</strong></td>
+                            <td>{{ site_object.age }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provenance Observed In</strong></td>
+                            <td>{{ site_object.provenanceObservedIn }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latitude Observed</strong></td>
+                            <td>{{ site_object.latitudeObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Longitude Observed</strong></td>
+                            <td>{{ site_object.longitudeObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Geonames Link Observed</strong></td>
+                            <td>{{ site_object.geonamesLinkObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pleiades Link Observed</strong></td>
+                            <td>{{ site_object.pleiadesLinkObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date Observed</strong></td>
+                            <td>{{ site_object.dateObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dating Criteria Observed</strong></td>
+                            <td>{{ site_object.datingCriteriaObserved }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provenance Other Locations</strong></td>
+                            <td>{{ site_object.provenanceOtherLocations }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latitude Other</strong></td>
+                            <td>{{ site_object.latitudeOther }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Longitude Other</strong></td>
+                            <td>{{ site_object.longitudeOther }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Geonames Link Other Locations</strong></td>
+                            <td>{{ site_object.geonamesLinkOtherLocations }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date Other Locations</strong></td>
+                            <td>{{ site_object.dateOtherLocations }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dating Criteria Other Locations</strong></td>
+                            <td>{{ site_object.datingCriteriaOtherLocations }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current Location</strong></td>
+                            <td>{{ site_object.currentLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latitude Current</strong></td>
+                            <td>{{ site_object.latitudeCurrent }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Longitude Current</strong></td>
+                            <td>{{ site_object.longitudeCurrent }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Geonames Link Current</strong></td>
+                            <td>{{ site_object.geonamesLinkCurrent }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pleiades Link Current</strong></td>
+                            <td>{{ site_object.pleiadesLinkCurrent }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Author of publication</strong></td>
+                            <td>{{ site_object.authorPublication }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Start Date</strong></td>
+                            <td>{{ site_object.startDate }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>End Date</strong></td>
+                            <td>{{ site_object.endDate }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Age (contemporary)</strong></td>
+                            <td>{{ site_object.ageContemporary }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Original Language</strong></td>
+                            <td>{{ site_object.originalLanguage }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Publication Language</strong></td>
+                            <td>{{ site_object.publicationLanguage }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Source Information</strong></td>
+                            <td>{{ site_object.sourceInformation }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Annotation</strong></td>
+                            <td>{{ site_object.annotation }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keywords</strong></td>
+                            <td>{{ site_object.keywords }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Source Content</strong></td>
+                            <td>{{ site_object.sourceContent }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Copyright Storage Place</strong></td>
+                            <td>{{ site_object.copyrightStoragePlace }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VIAF</strong></td>
+                            <td>{{ site_object.viaf }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IIIF</strong></td>
+                            <td>{{ site_object.iiif }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No results found.</p>
+            {% endfor %}
+        </div>
+        <a href="/">Go back</a>
+    </div>
+    <footer>
+        <p class="mb-0">&copy; 2024 <a href="https://github.com/Bestroi150" target="_blank" style="color: #ffffff;">DigitalSEE</a></p>
+        <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="color: #ffffff;">Creative Commons Attribution 4.0 International License</a>.</p>
+        <div class="d-flex justify-content-center mt-2">          
+        </div>
+    </footer>
+</body>
+</html>
