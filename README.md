@@ -19,10 +19,10 @@ This project is a Flask-based web application that allows users to generate, upl
 - [Running the Application](#run-the-flask-application)
 - [Application Routes](#application-routes)
 - [Usage](#usage)
-- [Dataset](#dataset)
 - [Form Fields](#form-fields)
 - [Error Handling](#error-handling)
 - [Troubleshooting](#troubleshooting)
+- [Dataset](#dataset)
 
 ## Features
 - **XML File Generation**: Users can fill out forms, and the application generates XML files based on the input.
@@ -46,7 +46,7 @@ This project is a Flask-based web application that allows users to generate, upl
    git clone https://github.com/Bestroi150/DigitalSEE-DataEntrySystem.git
    cd DigitalSEE-DataEntrySystem
 
-2. **Clone the repository:**
+2. **Create a virtual environment:**
    ```bash
     python3 -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -84,9 +84,6 @@ This project is a Flask-based web application that allows users to generate, upl
     -   Go to `http://127.0.0.1:5000/view-uploads`.
     -   Search through the uploaded XML files by entering keywords in the search box.
   
-## Dataset
-The XML metadata generated using this system has been compiled into a dataset, which can be accessed through the following repository: [DigitalSEE](https://github.com/Bestroi150/DigitalSEE/tree/main). This dataset contains detailed records of historical and archaeological sites and is a key component of the DigitalSEE initiative. 
-
 ## Form Fields
 
 The form requires input of the following metadata fields:
@@ -110,6 +107,9 @@ The form requires input of the following metadata fields:
 ## Troubleshooting
 
 -   **File Not Saving**: Verify the `uploads` folder exists and has write permissions.
+
+## Dataset
+The XML metadata generated using this system has been compiled into a dataset, which can be accessed through the following repository: [DigitalSEE](https://github.com/Bestroi150/DigitalSEE/tree/main). This dataset contains detailed records of historical and archaeological sites and is a key component of the DigitalSEE initiative. 
 
 ## License
 
