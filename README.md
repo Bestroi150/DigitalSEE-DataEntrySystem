@@ -42,8 +42,9 @@ This project is a Flask-based web application that allows users to generate, upl
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo/xml-metadata-management.git
-   cd xml-metadata-management
+   git clone https://github.com/Bestroi150/DigitalSEE-DataEntrySystem.git
+   cd DigitalSEE-DataEntrySystem
+
 2. **Clone the repository:**
    ```bash
     python3 -m venv venv
